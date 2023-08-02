@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3wrapistoragea65044f8",
+  "bucketName": "wrapi-storage-a65044f8",
+  "policyUUID": "3f3719e3",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

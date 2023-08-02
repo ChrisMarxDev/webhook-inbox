@@ -1,0 +1,78 @@
+name: my_app
+description: API Wrapper UI
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  amplify_api: ^1.1.1
+  amplify_auth_cognito: ^1.2.1
+  amplify_authenticator: ^1.2.0
+  amplify_flutter: ^1.1.1
+  amplify_storage_s3: ^1.1.1
+  cached_network_image: ^3.2.3
+  collection: ^1.17.1
+  dart_frog_web_socket: ^0.1.0-dev.3
+  flutter:
+    sdk: flutter
+  flutter_animate: ^4.2.0
+  flutter_json_view: ^1.1.0
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^2.3.6
+  flutter_svg: ^2.0.7
+  freezed_annotation: ^2.2.0
+  go_router: ^7.1.1
+  http: ^1.0.0
+  intl: ^0.18.0
+  json_annotation: ^4.8.1
+  json_view: ^0.4.2
+  logger: ^1.4.0
+  models:
+    path: ../server/models
+  sentry_flutter: ^7.8.0
+  shimmer: ^3.0.0
+  widgetbook: ^3.1.0
+  widgetbook_annotation: ^3.0.0
+
+dev_dependencies:
+  bloc_test: ^9.1.2
+  build_runner: ^2.4.6
+  flutter_test:
+    sdk: flutter
+  freezed: ^2.3.5
+  json_serializable: ^6.7.0
+  mocktail: ^0.3.0
+  very_good_analysis: ^5.0.0
+  riverpod_lint: ^1.3.2
+  custom_lint: ^0.4.0
+  widgetbook_generator: ^3.0.0
+
+
+
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/images/
+    - assets/fonts/
+    - assets/animations/
+  fonts:
+    - family: Anton
+      fonts:
+        - asset: assets/fonts/Anton-Regular.ttf
+    - family: NeutraText
+      fonts:
+        - asset: assets/fonts/NeutraText-Bold.otf
+          weight: 700
+        - asset: assets/fonts/NeutraText-Book.otf
+          weight: 400
+        - asset: assets/fonts/NeutraText-BoldItalic.otf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/NeutraText-BookItalic.otf
+          weight: 400
+          style: italic
