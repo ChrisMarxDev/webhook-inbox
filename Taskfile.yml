@@ -1,0 +1,94 @@
+version: '3'
+
+tasks:
+  g:
+    cmds:
+      - git add .
+      - git commit -m "update"
+  #      - git push
+  server_dev:
+    dotenv:
+      - .env
+    dir: server
+    cmds:
+      - dart_frog dev
+  server_build:
+    dotenv:
+      - .env
+    dir: server
+    cmds:
+      - dart_frog build
+  app_browser:
+    dir: app
+    cmds:
+      - flutter run  -t lib/main_development.dart -d chrome --dart-define-from-file=./secrets.json
+  app_macos:
+    dir: app
+    cmds:
+      - flutter run  -t lib/main_development.dart -d macos --dart-define-from-file=./secrets.json
+  app_locale:
+    dir: app
+    cmds:
+      - flutter gen-l10n
+  app_generate:
+    dir: app
+    cmds:
+      - flutter pub get
+      - flutter pub run build_runner build --delete-conflicting-outputs
+  models_generate:
+    dir: models
+    cmds:
+      - dart pub get
+      - dart pub run build_runner build --delete-conflicting-outputs
+  all_generate:
+    cmds:
+      - task: models_generate
+      - task: app_generate
+  app_pub_get:
+    dir: app
+    cmds:
+      - flutter pub get
+  models_pub_get:
+    dir: server/models
+    cmds:
+      - flutter pub get
+  server_pub_get:
+    dotenv:
+      - .env
+    dir: server
+    cmds:
+      - dart pub get
+  all_pub_get:
+    cmds:
+      - task: models_pub_get
+      - task: app_pub_get
+      - task: server_pub_get
+  models_build:
+    dir: server/models
+    cmds:
+      - flutter pub run build_runner build --delete-conflicting-outputs
+#  server_deploy:
+#    dir: server
+#    cmds:
+#      - dart_frog build
+#      - docker buildx build build --tag 214528179632.dkr.ecr.eu-central-1.amazonaws.com/push-banana-repository:push-banana-image --platform linux/amd64
+#      - docker push 214528179632.dkr.ecr.eu-central-1.amazonaws.com/push-banana-repository:push-banana-image
+  server_deploy_gcp:
+    dir: server
+    dotenv:
+      - .env
+    cmds:
+      - dart_frog build
+      - gcloud run deploy push-banana-server --source build --project=push-banana --allow-unauthenticated
+  app_widgetbook:
+    dir: app
+    cmds:
+      - flutter run -t lib/widgetbook.dart -d macos
+  env_test:
+    dir: server
+    dotenv:
+      - .env
+    cmds:
+      - echo $AWS_BUCKET
+
+

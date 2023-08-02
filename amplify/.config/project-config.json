@@ -1,0 +1,13 @@
+{
+  "projectName": "Wrapi",
+  "version": "3.1",
+  "frontend": "flutter",
+  "flutter": {
+    "config": {
+      "ResDir": "./app/lib/"
+    }
+  },
+  "providers": [
+    "awscloudformation"
+  ]
+}

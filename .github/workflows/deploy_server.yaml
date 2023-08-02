@@ -1,0 +1,52 @@
+#- dart_frog build
+#- docker build build --tag 214528179632.dkr.ecr.eu-central-1.amazonaws.com/push-banana-repository:push-banana-image
+#- docker push 214528179632.dkr.ecr.eu-central-1.amazonaws.com/push-banana-repository:push-banana-image
+#
+
+name: wrapi-server
+
+concurrency:
+  group: $-$
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Note: This workflow uses the latest stable version of the Dart SDK.
+      # You can specify other versions if desired, see documentation here:
+      # https://github.com/dart-lang/setup-dart/blob/main/README.md
+      - uses: dart-lang/setup-dart@v1
+      #      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+
+      - name: Install dart_frog
+        run: dart pub global activate dart_frog_cli
+        working-directory: ./server
+
+      - name: Build dart_frog
+        run: dart_frog build
+        working-directory: ./server
+
+      - name: Build Container
+        run: docker build  --tag push-banana-repository:v1 ./build
+        working-directory: ./server
+      #        run: docker build build --tag my-image:v1 .
+
+
+      - name: Push to ECR
+        id: ecr
+        uses: jwalton/gh-ecr-push@v1
+        with:
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: eu-central-1
+          local-image: push-banana-repository:v1
+          image: push-banana-repository:v1, push-banana-repository:v1

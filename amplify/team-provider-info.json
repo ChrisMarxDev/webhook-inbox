@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-wrapi-dev-123258-authRole",
+      "UnauthRoleArn": "arn:aws:iam::214528179632:role/amplify-wrapi-dev-123258-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::214528179632:role/amplify-wrapi-dev-123258-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-wrapi-dev-123258-deployment",
+      "UnauthRoleName": "amplify-wrapi-dev-123258-unauthRole",
+      "StackName": "amplify-wrapi-dev-123258",
+      "StackId": "arn:aws:cloudformation:eu-central-1:214528179632:stack/amplify-wrapi-dev-123258/013b8500-06b1-11ee-8ca8-022d8ed415b8",
+      "AmplifyAppId": "d2vwpofzk9vuhy"
+    },
+    "categories": {
+      "auth": {
+        "wrapic96a93e0": {}
+      },
+      "storage": {
+        "s3wrapistoragea65044f8": {}
+      }
+    }
+  }
+}
